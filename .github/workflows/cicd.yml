@@ -1,0 +1,14 @@
+name: CI
+
+on: [push, workflow_dispatch]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@2
+      - name: check the secret
+        run: |
+          echo secret is 1234
+          echo secret is ${{ secrets.AC }}
+
