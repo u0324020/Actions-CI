@@ -13,15 +13,15 @@ jobs:
     - run: go version
 
     - name: setup go mod
-    - run: |
+      run: |
         go mod init github.com/$GITHUB_REPOSITORY
         go mod download
 
     - name: unit test
-    - run: go test -v
+      run: go test -v
 
     - name: build code
-    - run: go build main.go
+      run: go build main.go
 
     - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build & push Docker image
