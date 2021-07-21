@@ -11,14 +11,14 @@ jobs:
       with:
         go-version: '^1.13.1' # The Go version to download (if necessary) and use.
     - run: go version
-    
+
     - name: unit test
       run: go test -v
 
     - name: build code
       run: go build main.go
 
-    - uses: mr-smithers-excellent/docker-build-push@v5
+    - uses: mr-smithers-excellent/docker-build-push@v5.5
       name: Build & push Docker image
       with:
         image: gojane20/janedockerrepo/demo_image
