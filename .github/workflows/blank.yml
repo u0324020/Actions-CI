@@ -35,4 +35,5 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
       - name: Secret
-        run: echo ${{ secrets.AC }}
+        if: ${{ secrets.AC }} == 1234
+        run: echo This secret is right!
