@@ -6,7 +6,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@2
+      - uses: actions/checkout@v2
       - name: check the secret
         run: |
           echo secret is 1234
