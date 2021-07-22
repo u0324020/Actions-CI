@@ -27,7 +27,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         
     - run: |
-        docker build . -t gojane20/janedockerrepo:${{ github.sha }}
-        docker push gojane20/janedockerrepo:${{ github.sha }}
-        
-    
+        cat ~/.docker/config.json
+        docker pull gojane20/janedockerrepo:v1
+        docker build . -t gojane20/janedockerrepo:v2
+        docker push gojane20/janedockerrepo:v2
