@@ -29,6 +29,6 @@ jobs:
     - run: |
         docker build . -t gojane20/demo:v1
         docker images 
-        docker tag gojane20/demo:v1 gojane20/janedockerrepo:v3
+        docker tag gojane20/demo:v1 index.docker.io/gojane20/janedockerrepo:v3
         docker images
-        docker push gojane20/janedockerrepo:v3
+        docker push index.docker.io/gojane20/janedockerrepo:v3
