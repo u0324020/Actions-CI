@@ -27,7 +27,8 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         
     - run: |
-        docker pull gojane20/janedockerrepo:v1
-        docker build . -t index.docker.io/gojane20/janedockerrepo:v2
-        docker push index.docker.io/gojane20/janedockerrepo:v1
-        docker push index.docker.io/gojane20/janedockerrepo:v2
+        docker build -t demo:v1
+        docker images 
+        docker tag demo gojane20/janedockerrepo:v3
+        docker images
+        docker push gojane20/janedockerrepo:v3
