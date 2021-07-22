@@ -27,7 +27,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         
     - run: |
-        docker build -t demo:v1
+        docker build . -t demo:v1
         docker images 
         docker tag demo gojane20/janedockerrepo:v3
         docker images
