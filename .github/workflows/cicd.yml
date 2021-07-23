@@ -26,16 +26,9 @@ jobs:
         files: '*.xml'
         report_individual_runs: "true"
 
-    - name: go test
-      run: |
-        go test --coverprofile=cover.out
-        ls
-        go test --coverprofile=cover.out test.xml
-        ls
-
     - name: build code
       run: go build main.go
-      
+    # scan code
     - name: Docker Hub login
       uses: azure/docker-login@v1
       with:
