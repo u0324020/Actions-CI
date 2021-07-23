@@ -28,7 +28,7 @@ jobs:
 
     - name: build code
       run: go build main.go
-      
+    # scan code
     - name: Docker Hub login
       uses: azure/docker-login@v1
       with:
