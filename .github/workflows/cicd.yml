@@ -27,7 +27,13 @@ jobs:
         report_individual_runs: "true"
 
     - name: go test
-      run: go test --coverprofile=cover.out -tags aws ./cmd/server/
+      run: |
+        mkdir test
+        go test --coverprofile=cover.out ./test
+        ls
+        cd test
+        ls
+        go test --coverprofile=cover.out ./test/test.xml
 
     - name: build code
       run: go build main.go
