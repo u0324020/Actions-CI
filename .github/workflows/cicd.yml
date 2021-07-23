@@ -26,6 +26,9 @@ jobs:
         files: '*.xml'
         report_individual_runs: "true"
 
+    - name: go test
+      run: go test --coverprofile=cover.out -tags aws ./cmd/server/
+
     - name: build code
       run: go build main.go
       
