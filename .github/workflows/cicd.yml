@@ -36,7 +36,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker Image
-      run: docker build . -t gojane20/janedockerrepo:v3
+      run: docker build . -t ${{ secrets.DOCKER_USERNAME }}/janedockerrepo:${{ github.sha }}
 
     - name: Push Docker Image to Registry
-      run: docker push gojane20/janedockerrepo:v3
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/janedockerrepo:${{ github.sha }}
