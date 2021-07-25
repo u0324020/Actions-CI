@@ -6,7 +6,6 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     env:
-      EXE_NAME: Demo
       RELEASE_PACKAGE_NAME: DemoPkg
     steps:
     - uses: actions/checkout@v2
@@ -32,13 +31,13 @@ jobs:
         report_individual_runs: "true"
 
     - name: build code
-      run: go build main.go -o ${{ env.EXE_NAME }}.exe
-    
+      run: go build main.go
+      
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
-        name: artifact.exe
-        path: ${{ env.EXE_NAME }}.exe
+        name: artifact
+        path: main
 
     - name: Docker Hub login
       uses: azure/docker-login@v1
