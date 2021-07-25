@@ -28,6 +28,12 @@ jobs:
 
     - name: build code
       run: go build main.go
+    
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: artifact
+        path: main
 
     - name: Docker Hub login
       uses: azure/docker-login@v1
