@@ -57,7 +57,7 @@ jobs:
       run: docker push ${{ secrets.DOCKER_USERNAME }}/janedockerrepo:${{ github.sha }}
       
     - name: Compress release package
-      run: zip -r ${{ env.RELEASE_PACKAGE_NAME }}.zip
+      run: zip -r ${{ env.RELEASE_PACKAGE_NAME }}.zip .
       
     - name: create release
       id: create_release
