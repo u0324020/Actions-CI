@@ -5,13 +5,18 @@ on: [push, workflow_dispatch]
 jobs:
   setup:
     runs-on: ubuntu-latest
+    env:
+      EXE_NAME: Demo
+      RELEASE_PACKAGE_NAME: DemoPkg
     steps:
     - uses: actions/checkout@v2
 
     - uses: actions/setup-go@v2
       with:
         go-version: '^1.13.1' # The Go version to download (if necessary) and use.
-    - run: go version
+        
+    - name: check go version
+      run: go version
 
     - name: install gotestsum
       run: go get -u gotest.tools/gotestsum
@@ -27,13 +32,13 @@ jobs:
         report_individual_runs: "true"
 
     - name: build code
-      run: go build main.go
+      run: go build main.go -o /out/${{ env.EXE_NAME }}
     
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
         name: artifact
-        path: main
+        path: /out/${{ env.EXE_NAME }}
 
     - name: Docker Hub login
       uses: azure/docker-login@v1
@@ -44,9 +49,37 @@ jobs:
     - name: Build Docker Image
       run: docker build . -t ${{ secrets.DOCKER_USERNAME }}/janedockerrepo:${{ github.sha }}
       
-    - uses: Azure/container-scan@v0.1
+    - name: scan code
+      uses: Azure/container-scan@v0.1
       with:
         image-name: ${{ secrets.DOCKER_USERNAME }}/janedockerrepo:${{ github.sha }}
 
     - name: Push Docker Image to Registry
       run: docker push ${{ secrets.DOCKER_USERNAME }}/janedockerrepo:${{ github.sha }}
+      
+    - name: Compress release package
+      run: |
+        mv out/${{ env.EXE_NAME }} ${{ env.EXE_NAME }}
+        zip -r ${{ env.RELEASE_PACKAGE_NAME }}.zip
+      
+    - name: create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: upload release asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ env.RELEASE_PACKAGE_NAME }}.zip
+        asset_name: ${{ env.RELEASE_PACKAGE_NAME }}.zip
+        asset_content_type: application/zip
