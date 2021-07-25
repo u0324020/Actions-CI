@@ -32,13 +32,13 @@ jobs:
         report_individual_runs: "true"
 
     - name: build code
-      run: go build main.go -o /out/${{ env.EXE_NAME }}
+      run: go build main.go -o ${{ env.EXE_NAME }}.exe
     
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
-        name: artifact
-        path: /out/${{ env.EXE_NAME }}
+        name: artifact.exe
+        path: ${{ env.EXE_NAME }}.exe
 
     - name: Docker Hub login
       uses: azure/docker-login@v1
@@ -58,9 +58,7 @@ jobs:
       run: docker push ${{ secrets.DOCKER_USERNAME }}/janedockerrepo:${{ github.sha }}
       
     - name: Compress release package
-      run: |
-        mv out/${{ env.EXE_NAME }} ${{ env.EXE_NAME }}
-        zip -r ${{ env.RELEASE_PACKAGE_NAME }}.zip
+      run: zip -r ${{ env.RELEASE_PACKAGE_NAME }}.zip
       
     - name: create release
       id: create_release
