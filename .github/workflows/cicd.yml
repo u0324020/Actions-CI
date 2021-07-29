@@ -71,7 +71,6 @@ jobs:
         version: v3.4.0
     - name: create helm
       run: |
-        helm install 
         helm create demo-service
     - name: Configure Git
       run: |
