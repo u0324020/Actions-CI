@@ -1,5 +1,8 @@
 name: CI
 
+env:
+  GIT_USERNAME: "DefectDojo release bot"
+  GIT_EMAIL: "dojo-release-bot@users.noreply.github.com"
 on: [push, workflow_dispatch]
 
 jobs:
@@ -72,10 +75,10 @@ jobs:
     - name: create helm
       run: |
         helm create demo-service
-    - name: Configure Git
+    - name: Configure git
       run: |
-        git config user.name "$GITHUB_ACTOR"
-        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git config --global user.name "${{ env.GIT_USERNAME }}"
+        git config --global user.email "${{ env.GIT_EMAIL }}"
     - name: Add dependency chart repos
       run: |
         helm repo add stable https://charts.helm.sh/stable
