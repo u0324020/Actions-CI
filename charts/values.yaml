@@ -1,0 +1,15 @@
+app: demo-service
+namespace: default
+
+image:
+  repoURL: hub.docker.com
+  secret: secret-aws-harbor
+  image: gojane20/janedockerrepo
+  imageTag: v3
+
+hpa:
+  minReplicas: __FROM_VALUES_FILE__
+  maxReplicas: __FROM_VALUES_FILE__
+
+podDisruptionBudget:
+  maxUnavailable: 1 # pls confirm replicas need large then 2

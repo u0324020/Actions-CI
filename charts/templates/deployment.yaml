@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.app }}
+    release: {{ .Values.app }}
+    version: {{ .Values.image.imageTag }}
+spec:
+  replicas: {{ .Values.hpa.minReplicas }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.app }}
+      release: {{ .Values.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app }}
+        release: {{ .Values.app }}
+        version: {{ .Values.image.imageTag }}
+    spec:
+      containers:
+        - name: {{ .Values.app }}
+          image: "{{ .Values.image.repoURL }}/{{ .Values.image.image }}:{{ .Values.image.imageTag }}"
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: {{ .Values.image.secret }}

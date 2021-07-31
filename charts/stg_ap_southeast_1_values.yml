@@ -1,0 +1,21 @@
+# modify command: sops -i -e/-d <file_name>
+enc_app_name:
+    - ENC[AES256_GCM,data:uVgVSWBfUztcezOx,iv:6PvLWIqIiPjbZZVaLQmAKsXuJTgZnv97S+IS3ocu5q8=,tag:ITc5kIycX7MiMabqif+lBA==,type:str]
+hpa:
+    minReplicas: 2
+    maxReplicas: 10
+sops:
+    kms:
+        - arn: arn:aws:kms:us-west-2:707498989173:key/2d2f98d3-9930-4e0a-aa22-71591e39893b
+          created_at: "2021-07-29T16:46:35Z"
+          enc: AQICAHjdnlZylJHqHnD3MGd2RfRyBDWRUDhVz973nQmXHRl1JwGhA4FLoJayYktHtoFwmrlgAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM1CyTfJSNVgrYs6wiAgEQgDuP9hrYhPqqBKg9xV4l/YRPX5EYWV2vBRnvPY1lL0ojxmkqL+876mRAxXt9R8tuXr94LvcKDARFH+Bv2Q==
+          aws_profile: ""
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2021-07-29T16:46:38Z"
+    mac: ENC[AES256_GCM,data:EBSUvxl8gqTR8ri294qb+up+udIuuaupgnK1LxdpeCV04JjfJstYA1rbhlzfVSBeFUdBOEV0IkfHh5ubnNtgGwk3mjH3/I7Saf6YCkzkex7UclYXC0qTwFlS77n5e+rDABnShp02LGeepK/IJFLyxohde8J0FcuhssxaDiVArmM=,iv:nAvv7TT6adxIyLHcPDhY0arXhJnAjrLu9KDhb76tqvk=,tag:3x4PuronQvP4rJ/07NzY2Q==,type:str]
+    pgp: []
+    encrypted_regex: ^enc[^a-z]
+    version: 3.7.1
