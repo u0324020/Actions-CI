@@ -20,6 +20,8 @@ jobs:
       uses: github/super-linter@v4
       env:
           VALIDATE_ALL_CODEBASE: false # scan change parts
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           VALIDATE_GO: true
           VALIDATE_DOCKERFILE: true
 
