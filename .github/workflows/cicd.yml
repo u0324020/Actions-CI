@@ -1,8 +1,5 @@
 name: CI
 
-env:
-  GIT_USERNAME: "DefectDojo release bot"
-  GIT_EMAIL: "dojo-release-bot@users.noreply.github.com"
 on: [push, workflow_dispatch]
 
 jobs:
@@ -91,7 +88,9 @@ jobs:
         version: v3.4.0
 
     - name: check helm template
-      run: helm template demo-service charts -f charts/stg_ap_southeast_1_values.yml
+      run: |
+        helm repo update
+        helm template demo-service charts -f charts/stg_ap_southeast_1_values.yml
 
     - name: helm install
       run: helm install demo-service charts --debug --timeout 180s --namespace default --values charts/stg_ap_southeast_1_values.yml

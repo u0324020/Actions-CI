@@ -23,6 +23,7 @@ spec:
         app: {{ .Values.app }}
         release: {{ .Values.app }}
         version: {{ .Values.image.imageTag }}
+        date: "{{ now | unixEpoch }}"
     spec:
       containers:
         - name: {{ .Values.app }}
