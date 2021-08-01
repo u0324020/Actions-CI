@@ -13,14 +13,14 @@ jobs:
 
     - uses: actions/checkout@v2
 
-    - name: Super-Linter
-      uses: github/super-linter@v4
-      env:
-          VALIDATE_ALL_CODEBASE: false # scan change parts
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          VALIDATE_GO: true
-          VALIDATE_DOCKERFILE: true
+    # - name: Super-Linter
+    #   uses: github/super-linter@v4
+    #   env:
+    #       VALIDATE_ALL_CODEBASE: false # scan change parts
+    #       DEFAULT_BRANCH: main
+    #       GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+    #       VALIDATE_GO: true
+    #       VALIDATE_DOCKERFILE: true
 
     - uses: actions/setup-go@v2
       with:
@@ -44,15 +44,6 @@ jobs:
 
     - name: build code
       run: go build main.go
-
-    - name: curl web
-      run: |
-        sleep 3
-        echo sleep...
-        go run main.go
-        sleep 3
-        echo sleep...
-        curl localhost:8888/login.html
       
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
@@ -98,6 +89,7 @@ jobs:
 
     - name: check helm template
       run: |
+        helm repo add stable https://kubernetes-charts.storage.googleapis.com
         helm repo update
         helm template demo-service charts -f charts/stg_ap_southeast_1_values.yml
 
