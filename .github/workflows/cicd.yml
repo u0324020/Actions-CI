@@ -44,6 +44,13 @@ jobs:
 
     - name: build code
       run: go build main.go
+
+    - name: curl web
+      run: |
+        sleep 3
+        go run main.go
+        sleep 3
+        curl localhost:8888/login.html
       
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4

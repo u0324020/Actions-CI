@@ -2,7 +2,6 @@ package auth
 
 import (
 	"github.com/stretchr/testify/assert"
-	"io/ioutil"
 	"testing"
 )
 /*
