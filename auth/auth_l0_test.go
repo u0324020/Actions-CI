@@ -58,19 +58,7 @@ func TestCheckUserIsExist_InputExistUser_ReturnTrue(t *testing.T) {
 	assert.Equal(t, true, CheckUserIsExist("jane"))
 }
 /*
-#4 [read file]
-*/
-func TestReadFile_example(t *testing.T){
-	data, err := ioutil.ReadFile("../../test/test.data")
-	if err != nil{
-		t.Fatal("Could not open file")
-	}
-	if string(data) != "Hello World"{
-		t.Fatal("String contents do not match expected")
-	}
-}
-/*
-#5 [benchmark]
+#4 [benchmark]
 command: go test -bench BenchmarkAuth
 */
 func BenchmarkAuth(b *testing.B) {
