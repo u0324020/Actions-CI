@@ -48,8 +48,10 @@ jobs:
     - name: curl web
       run: |
         sleep 3
+        echo sleep...
         go run main.go
         sleep 3
+        echo sleep...
         curl localhost:8888/login.html
       
     - name: Upload a Build Artifact
