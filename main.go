@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/u0324020/ACTIONS-CI/auth"
+	"github.com/u0324020/Actions-CI/auth"
 	"errors"
 	"github.com/gin-gonic/gin"
 	"net/http"
