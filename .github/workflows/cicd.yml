@@ -42,8 +42,18 @@ jobs:
         files: '*.xml'
         report_individual_runs: "true"
 
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: go
+
+    # build code
     - name: build code
       run: go build main.go
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
+      
       
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
