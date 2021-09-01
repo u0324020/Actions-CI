@@ -5,7 +5,7 @@ on: push
 jobs:
   # job for release
   release-job:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
     env:
       # release package name
       RELEASE_PACKAGE_NAME: demo-pkg
