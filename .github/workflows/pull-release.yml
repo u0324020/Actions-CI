@@ -14,8 +14,8 @@ jobs:
       with:
         repository: apache/openwhisk-cli
         tag: 'v1.0.0'
-        path: downloads
         file: demo-pkg.zip
+        token: ${{ secrets.GIT_TOKEN }}
 
     - name: unzip
       run: |
