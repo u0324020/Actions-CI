@@ -1,0 +1,24 @@
+name: pull-release
+
+on: [push]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_PACKAGE_NAME: DemoPkg
+    steps:
+
+    - name: Download CLI
+      uses: Legion2/download-release-action@v2.1.0
+      with:
+        repository: apache/openwhisk-cli
+        tag: 'v1.0.0'
+        path: downloads
+        file: demo-pkg.zip
+
+    - name: unzip
+      run: |
+        ls
+        unzip demo-pkg.zip -d demo-pkg
+        ls demo-pkg
