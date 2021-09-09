@@ -40,7 +40,7 @@ jobs:
           allowUpdates: True
           artifacts: ${{ env.RELEASE_PACKAGE_NAME }}.zip
           artifactContentType: application/zip
-          name: Release ${{ env.TAG_VERSION }}
+          name: Release test ${{ env.TAG_VERSION }}
           tag: ${{ env.TAG_VERSION }}
           token: ${{ secrets.GIT_TOKEN }}
 
