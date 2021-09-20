@@ -29,6 +29,16 @@ jobs:
     - name: check go version
       run: go version
 
+    - name: Super-Linter
+      uses: github/super-linter@v4.5.1
+      env:
+          VALIDATE_ALL_CODEBASE: false
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          VALIDATE_GO: true
+          VALIDATE_YAML: true
+          VALIDATE_DOCKERFILE: true
+          VALIDATE_KUBERNETES_KUBEVAL: true
+
     - name: install gotestsum
       run: go get -u gotest.tools/gotestsum
 
